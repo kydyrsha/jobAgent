@@ -7,7 +7,13 @@
   </div>
   <div class="filter-wrapper">
     <p>Sort by:</p>
-    <p>Views <i class="ri-arrow-down-s-line"></i></p>
+    <div class="sort">
+      <p>Views <i class="ri-arrow-down-s-line"></i></p>
+      <p>Recently</p>
+      <p>Data</p>
+      <p>A-z</p>
+      <p>Z-a</p>
+    </div>
   </div>
 </div>
 </template>
