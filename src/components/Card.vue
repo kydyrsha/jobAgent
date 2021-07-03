@@ -1,25 +1,25 @@
 <template>
   <div class="card-wrapper">
-    <div class="card">
+    <div class="card" v-for="(job, index) in jobs" :key="index">
       <img src="@/assets/img/bank.svg" alt="logo">
       <div class="card-info">
-        <h2>Senior Software Developer (Re-advertised)</h2>
-        <div class="company-name">
+        <h2>{{job.name}}</h2>
+        <div class="card-link company-name">
           <p>Company:</p>
-          <a href="#">I&M Bank</a>
+          <a href="#">{{job.company}}</a>
         </div>
-        <div class="location-name">
+        <div class="card-link location-name">
           <p>Location:</p>
-          <a href="#">Nairobi, Kenya</a>
+          <a href="#">{{job.location.city}}, {{job.location.country}}</a>
         </div>
         <div class="data">
           <div class="posted">
             <i class="ri-time-line"></i>
-            <p>Posted 3 days ago</p>
+            <p>Posted {{job.postedDaysAgo}} days ago</p>
           </div>
           <div class="views">
             <i class="ri-eye-line"></i>
-            <p>420 views</p>
+            <p>{{job.views}} Views</p>
           </div>
         </div>
       </div>
@@ -29,7 +29,10 @@
 
 <script>
 export default {
-  name: "Card.vue"
+  name: "Card.vue",
+  props: {
+    jobs: Array
+  }
 }
 </script>
 
@@ -45,12 +48,21 @@ export default {
   padding:1rem;
   box-shadow: 0px 4px 8px rgba(33, 33, 33, 0.16);
   border-radius: 8px;
+  margin-bottom: 1rem;
+  justify-content: space-evenly;
+}
+
+.card-wrapper .card > img {
+  width:15%;
 }
 
 .card-wrapper .card .card-info {
   padding:0 0 0 1rem;
+  width:80%;
 }
-
+.card-wrapper .card .card-info .card-link > a {
+  color:#CD6405;
+}
 .card-wrapper .card .card-info > h2 {
   margin-bottom: 1rem;
   text-transform: uppercase;
@@ -68,6 +80,10 @@ export default {
   margin-top: 1rem;
 }
 
+.card-wrapper .data  p {
+  font-size: 12px;
+}
+
 .card-wrapper .data > div {
   display: flex;
   justify-content: space-between;
@@ -77,4 +93,6 @@ export default {
 .card-wrapper .data > div > i {
   margin-right: 0.5rem;
 }
+
+
 </style>

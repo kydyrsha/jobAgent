@@ -1,8 +1,11 @@
 <template>
   <div id="app">
     <Header></Header>
-    <Search></Search>
-    <Card></Card>
+    <Search
+        :searchKey="searchKey"
+        :onChange="onChange"
+    />
+    <Card :jobs="jobList" />
   </div>
 </template>
 
@@ -11,6 +14,7 @@
 import Header from '@/components/Header';
 import Search from '@/components/Search';
 import Card from '@/components/Card';
+import json from '../data/jobs-mock.json'
 
 export default {
   name: 'App',
@@ -18,16 +22,38 @@ export default {
     Header,
     Search,
     Card
+  },
+  data() {
+    return {
+      jobs: json.jobs,
+      searchKey: ''
+    }
+  },
+  computed: {
+    jobList() {
+      if (this.searchKey) {
+        return this.jobs.filter(job => (job.name.toLowerCase().includes(this.searchKey.toLowerCase())))
+      }
+      return this.jobs
+    }
+  },
+  methods: {
+    onChange(e) {
+      this.searchKey = e.target.value
+    }
   }
 }
 </script>
 
 <style>
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap');
+
 * {
   box-sizing: border-box;
   margin:0;
   font-size: 16px;
+  font-family: 'Roboto', sans-serif;
 }
 
 #app {
