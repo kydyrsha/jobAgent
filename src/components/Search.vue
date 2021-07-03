@@ -10,10 +10,8 @@
     <div class="sort dropdown">
       <div class="dropbtn"><span>views</span> <i class="ri-arrow-down-s-line"></i></div>
       <div class="dropdown-content">
-        <a>recently added</a>
-        <a>data</a>
-        <a>a-z</a>
-        <a>z-a</a>
+        <a>popular</a>
+        <a>all</a>
       </div>
     </div>
   </div>
