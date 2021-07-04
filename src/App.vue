@@ -4,6 +4,7 @@
     <Search
         :searchKey="searchKey"
         :onChange="onChange"
+        :onSort="onSort"
     />
     <Card :jobs="jobList" />
   </div>
@@ -26,7 +27,8 @@ export default {
   data() {
     return {
       jobs: json.jobs,
-      searchKey: ''
+      searchKey: '',
+      sortByViews: false,
     }
   },
   computed: {
@@ -34,12 +36,21 @@ export default {
       if (this.searchKey) {
         return this.jobs.filter(job => (job.name.toLowerCase().includes(this.searchKey.toLowerCase())))
       }
+      if (this.sortByViews) {
+        let j = [...this.jobs]
+        return j.sort(function (a, b) {
+         return b.views - a.views
+        })
+      }
       return this.jobs
     }
   },
   methods: {
     onChange(e) {
       this.searchKey = e.target.value
+    },
+    onSort(isSort) {
+      this.sortByViews = isSort
     }
   }
 }
