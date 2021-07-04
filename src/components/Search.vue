@@ -10,8 +10,8 @@
     <div class="sort dropdown">
       <div class="dropbtn"><span>views</span> <i class="ri-arrow-down-s-line"></i></div>
       <div class="dropdown-content">
-        <a>popular</a>
-        <a>all</a>
+        <a @click="onSort(true)">most popular</a>
+        <a @click="onSort(false)">default list</a>
       </div>
     </div>
   </div>
@@ -23,7 +23,8 @@ export default {
   name: "Search.vue",
   props: {
     searchKey: String,
-    onChange: Function
+    onChange: Function,
+    onSort: Function
   }
 }
 </script>
